@@ -1,0 +1,28 @@
+.hero { 
+  position: relative; 
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://thumbs.dreamstime.com/z/electronic-waste-28083357.jpg');
+  background-size: cover;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(5, 5, 5, 0.781);
+}
+h1 {
+  position: relative;
+  color: #ffffff;  
+  font-size: 10rem;
+  line-height: 0.9;
+  text-align: center;
+  
+}
