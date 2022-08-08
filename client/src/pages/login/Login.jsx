@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 import {TextField} from '@mui/material'
 import "./login.css"
+import HomeNav from "../../Components/HomeNav";
 function Login() {
  
   const navigate=useNavigate();
@@ -67,6 +68,9 @@ function Login() {
     }
   return (
     <div className="App" >
+      <HomeNav/>
+            <div className="wrapper bgded overlay" style={{height:"600px", backgroundImage: "url(" + "https://www.10wallpaper.com/wallpaper/1920x1200/1310/Banff_Lake_Louise-Windows_Nature_Wallpaper_1920x1200.jpg" + ")" }}>
+
       	<div className="container-fluid" style={{paddingTop:100}}>
 		<div className="row main-content bg-success text-center">
 			
@@ -76,7 +80,7 @@ function Login() {
 						<h2>Log In</h2>
 					</div>
 					<div className="row">
-						<form onSubmit={validation} className="form-group">
+						<form onSubmit={validation} className="form-group" style={{color:"black"}}>
 							<div className="row">
 								<input type="text" id="username" className="form__input" placeholder="Username"
                  name='username' onChange={handleInputChange} value={contacts.username} required/>
@@ -100,7 +104,7 @@ function Login() {
 			</div>
 		</div>
 	</div>
- 
+ </div>
   </div>
   )
 }

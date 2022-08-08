@@ -7,7 +7,7 @@ const volunteerSchema= new Schema({
     name:{ type: String, required: true },
     email:{ type: String, required: true },
     phone:{ type: String, required: true },
-   
+    address:{type:String,required:true}
    
 },{strict:false});
 var volunteerdata=mongoose.model('volunteerdata',volunteerSchema);

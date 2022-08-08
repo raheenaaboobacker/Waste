@@ -3,6 +3,8 @@ import { Row,Card } from 'react-bootstrap'
 import Footer from '../../Components/Footer'
 import UserNav from '../../Components/UserNav'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
+
 
 function UserDashboardd() { 
  const [arrOfData,setArrOfData]=useState([])
@@ -45,21 +47,23 @@ console.log(arrOfData);
   else if(status==1)
   {
     alert("waste collected")
+  }else if(status==2){
+    alert("sent to recycle")
   }
  
 } 
-const CheckRecycle=(recycle)=>
-{
-  if(recycle==0)
-  {
-    alert("could not send to recycle ")
-  }
-  else if(recycle==1)
-  {
-    alert("sent to Recycle")
-  }
+// const CheckRecycle=(recycle)=>
+// {
+//   if(recycle==0)
+//   {
+//     alert("could not send to recycle ")
+//   }
+//   else if(recycle==1)
+//   {
+//     alert("sent to Recycle")
+//   }
  
-}  
+// }  
   return (
 
 
@@ -82,10 +86,9 @@ const CheckRecycle=(recycle)=>
        <main className="hoc container clear"> 
 <Row>
       
-    {arrOfData.map((item,i)=>{
-      console.log("item==>",item)
-      
-      return (
+    {
+    arrOfData.length>0?(
+      arrOfData.map((item,i)=> (
     <Card  style={{width:"300px",height:"190px",display: 'flex',marginLeft:"50px",marginTop:50,
       boxShadow:"2px 5px 5px 5px"}} >
       <Card.Body>
@@ -93,16 +96,18 @@ const CheckRecycle=(recycle)=>
           <h4 class="card-title" key={i}>{item.type}</h4>
           <h5 class="card-title" key={i}>{item.quantity}</h5>
           <p class="card-text" key={i}>{item.waste_type}</p>
-          <p class="card-text">{item.gender}</p>
+          <h6 class="card-title" >Requsted date :{moment(item?.date).format('YYYY-MM-DD')} </h6>
           <a onClick={()=>CheckStatus(item.status)} class="btn" style={{marginTop:5}}>
           Bin Status</a>
-          <a onClick={()=>CheckRecycle(item.recycle)} class="btn" style={{marginTop:5}}>
-          Recycle Status</a>
+          {/* <a onClick={()=>CheckRecycle(item.recycle)} class="btn" style={{marginTop:5}}>
+          Recycle Status</a> */}
       </div>
      </Card.Body>
    </Card> 
-      )
-     })}
+      
+      ))): <div style={{width:"600px", margin:"auto"}}><div style={{textAlign:"center",fontSize:20}}  className="alert alert-warning" role="alert">
+      No Request Found!
+     </div></div>}
   </Row>
 </main>
 <Footer/>    

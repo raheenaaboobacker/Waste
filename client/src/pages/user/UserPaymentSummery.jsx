@@ -57,19 +57,20 @@ console.log(arrOfData);
        <main className="hoc container clear">
 <Row>
 {arrOfData.map((item,i)=>(
-  <Card style={{width:"300px",height:"100px",display: 'flex',marginLeft:"50px",marginTop:50,
+  <>{item?.paymentData[i]? <Card style={{width:"300px",height:"100px",display: 'flex',marginLeft:"50px",marginTop:50,
   boxShadow:"2px 5px 5px 5px"}} >
     <Card.Body>
     <p class="card-text" key={i}>{item?.wasteData?.type}</p>
     <p class="card-text" key={i}>{item?.wasteData?.quantity}</p>
-    <p class="card-text" key={i}>{item?.paymentData[i]?.amount}</p>
+    <p class="card-text" key={i}>{item?.paymentData[i].amount}</p>
 
 {/* <a onClick={()=>CheckStatus(item.status)} class="btn" style={{backgroundColor:'#129b05',color:'white'}}>
 Bin Status</a> */}
 
  
     </Card.Body>
-  </Card>
+  </Card>:null}</>
+ 
 
 
 

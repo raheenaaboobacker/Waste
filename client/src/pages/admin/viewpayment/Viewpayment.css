@@ -2,10 +2,16 @@
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  
+  .divmonthlyreport {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   h2 {
     font-size: 20px;
     margin: 20px 0;
@@ -36,13 +42,16 @@
   .responsive-table .col-1 {
     flex-basis: 10%;
   }
-  .clamp {
+  /* .clamp {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
     overflow-wrap: break-word;
+  } */
+  .responsive-table .col-1 {
+    flex-basis: 15%;
   }
   .responsive-table .col-2 {
     flex-basis: 15%;
@@ -76,86 +85,93 @@
     }
   }
   table {
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-table caption {
-  font-size: 1.5em;
-  margin: .5em 0 .75em;
-}
-
-table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: .35em;
-}
-
-table th,
-table td {
-  padding: .625em;
-  text-align: center;
-}
-
-table th {
-  font-size: .95em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-table button{
-  margin-left: 120px;
-}
-@media screen and (max-width: 600px) {
-  table {
-    border: 0;
-  }
-
-  table caption {
-    font-size: 1.3em;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
   }
   
-  table thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
   }
   
   table tr {
-    border-bottom: 3px solid #ddd;
-    display: block;
-    margin-bottom: .625em;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
   }
   
+  table th,
   table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: .8em;
-    text-align: right;
+    padding: .625em;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  table th {
+    font-size: .95em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-size: 18px;
+    background-color: #95a5a6;
   }
   table button{
-    margin-left: 180px;
+    margin-left: 120px;
   }
-  table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
   
-  table td:last-child {
-    border-bottom: 0;
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    table button{
+      margin-left: 180px;
+    }
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
   }
+  a,
+a label {
+    cursor: pointer;
 }

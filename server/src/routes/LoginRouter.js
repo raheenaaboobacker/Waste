@@ -38,7 +38,8 @@ LoginRouter.post('/logindata',(req, res)=>{
             volunteer.findOne({login_id:id})
                 .then((registerData)=>{
                     const token = jwt.sign(
-                        {username:fetchedUser.username, name: registerData.name, userId:fetchedUser._id},
+                        {username:fetchedUser.username, name: registerData.name, 
+                            userId:fetchedUser._id},
                         "secret_this_should_be_longer",
                         { expiresIn: "1h" }
                     )
@@ -59,7 +60,8 @@ LoginRouter.post('/logindata',(req, res)=>{
             user.findOne({login_id:id})
             .then((registerData)=>{
                 const token = jwt.sign(
-                    {username:fetchedUser.username, name: registerData.name, userId:fetchedUser._id},
+                    {username:fetchedUser.username, name: registerData.name, 
+                        userId:fetchedUser._id},
                     "secret_this_should_be_longer",
                     { expiresIn: "1h" }
                 )
@@ -90,7 +92,8 @@ LoginRouter.post('/logindata',(req, res)=>{
                 volunteer.findOne({login_id:id})
                 .then((registerData)=>{
                     const token = jwt.sign(
-                        {username:fetchedUser.username, name: registerData.name, userId:fetchedUser._id},
+                        {username:fetchedUser.username, name: registerData.name, 
+                            userId:fetchedUser._id},
                         "secret_this_should_be_longer",
                         { expiresIn: "1h" }
                     )

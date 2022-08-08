@@ -7,6 +7,7 @@ import axios from 'axios'
 import {TextField} from '@mui/material'
 import { useNavigate,Link, Navigate } from 'react-router-dom';
 import "../pages/login/login.css"
+import HomeNav from '../Components/HomeNav';
 function SignUp() {
   const navigate=useNavigate()
     const [contacts,setContacts]=useState({
@@ -15,6 +16,7 @@ function SignUp() {
       email:'',
       phone:"",
       flatno:"",
+      address:"",
       password:'',
      role:""
     });
@@ -32,7 +34,8 @@ function SignUp() {
     }
     const addContacts=(e)=>{
         e.preventDefault()
-        var phoneno = /^\(?([0-9]{10})$/;
+        var phoneno = /^[6-9]\d{9}$/;
+        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
         var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if(contacts.role===""){
           toast.warning("Please choose role!!",{autoClose:3000,theme:'light'})
@@ -46,19 +49,23 @@ function SignUp() {
 
         }else
         if(!mailformat.test(contacts.email)){
-          toast.warning("Please enter user Email!!",{autoClose:3000,theme:'light'})
+          toast.warning("Please enter valid Email!!",{autoClose:3000,theme:'light'})
 
+        }else  
+        if(!phoneno.test(contacts.phone))
+        {
+            toast.warning("Please enter a valid  phone number!!",{autoClose:3000,theme:'light'})
         }else
         if(contacts.role==="2"&&contacts.flatno===""){
           toast.warning("Please enter flatno!!",{autoClose:3000,theme:'light'})
+        }else
+        if(contacts.role==="1"&&contacts.address===""){
+          toast.warning("Please enter address!!",{autoClose:3000,theme:'light'})
         }
        else
-          if(!phoneno.test(contacts.phone))
-        {
-            toast.warning("Please enter a valid  phone number!!",{autoClose:3000,theme:'light'})
-        }else 
-        if(contacts.password===''){
-          toast.warning("Please enter password!!",{autoClose:3000,theme:'light'})
+         
+        if(!strongPassword.test(contacts.password)){
+          toast.warning("Please enter Strong password.it must contains digit, character, Uppercase,Special character!!",{autoClose:3000,theme:'light'})
 
         }
        else{
@@ -94,8 +101,11 @@ function SignUp() {
       }
       }
   return (
-    <div>
-      <div className="container-fluid">
+    <div className="App" >
+    <HomeNav/>
+          <div className="wrapper bgded overlay" style={{height:"900px", backgroundImage: "url(" + "https://www.10wallpaper.com/wallpaper/1920x1200/1310/Banff_Lake_Louise-Windows_Nature_Wallpaper_1920x1200.jpg" + ")" }}>
+
+      <div className="container-fluid" style={{paddingTop:50}}>
 		<div className="row main-content bg-success text-center">
 			
 			<div className="col-md-12 col-xs-12 col-sm-12 login_form ">
@@ -104,14 +114,14 @@ function SignUp() {
 						<h2>Sign up</h2>
 					</div>
 					<div className="row">
-						<form onSubmit={addContacts} className="form-group">
-							<div className="row">
-              <select   className="form__input"
+						<form onSubmit={addContacts} className="form-group" style={{color:"black"}}>
+							<div className="row" >
+              <select   className="form__input" style={{color:"black"}}
                     aria-label="Default select example"
                     name="role"
                     value={contacts.role} required
                     onChange={handleInputChange}>
-                        <option selected>Choose Your Role</option>
+                        <option >Choose Your Role</option>
                         <option value="2">User</option>
                         <option value="1">Volunteer</option>
                   </select>
@@ -128,16 +138,18 @@ function SignUp() {
 								<input type="email" id="email" className="form__input" placeholder="Email"
                  name='email' onChange={handleInputChange} value={contacts.email} />
 							</div>
-              { contacts.role==="2" ?
-                   <><div className="row">
-                   <input type="text" id="flatno" className="form__input" placeholder="Flat Number"
-                    name='flatno' onChange={handleInputChange} value={contacts.flatno} />
-                 </div></>:null}
-              
               <div className="row">
 								<input type="number" id="phone" className="form__input" placeholder="Phone Number"
                  name='phone' onChange={handleInputChange} value={contacts.phone} />
 							</div>
+              { contacts.role==="2" ?
+                   <><div className="row">
+                   <input type="text" id="flatno" className="form__input" placeholder="Flat Number"
+                    name='flatno' onChange={handleInputChange} value={contacts.flatno} />
+                 </div></>:<><div className="row"><textarea id="address"  className="form__input" placeholder="Address" rows="2" cols="50"
+                 name='address' onChange={handleInputChange} value={contacts.address}></textarea>
+                 </div></>}
+              
 							<div className="row">
               	<input type="password" id="password" className="form__input" placeholder="Password"
                 name='password' onChange={handleInputChange} value={contacts.password}/>
@@ -155,6 +167,7 @@ function SignUp() {
 			</div>
 		</div>
 	</div>  
+  </div>
     <ToastContainer/>
 </div>
   )

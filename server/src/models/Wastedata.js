@@ -7,7 +7,9 @@ const WasteSchema = new Schema({
      type:{ type: String, required: true },
      quantity:{ type: String, required: true },
      status:{ type: Number, required: true }, 
-     recycle:{type: Number, required: true }
+     date:{type: String, required: true },
+     payment:{type: String, required: true },
+     // recycle
 })
 
 var Wastedata = mongoose.model('waste_tb',WasteSchema) //model creation

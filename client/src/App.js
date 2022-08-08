@@ -17,6 +17,8 @@ import AdminViewPayment from './pages/admin/viewpayment/AdminViewPayment';
 import AdminViewRequests from './pages/admin/AdminViewRequests';
 import Torecycle from './pages/volunteer/Torecycle';
 import About from './pages/About';
+import AdminViewRecycle from './pages/admin/AdminViewRecycle';
+import MonthlyReport from './pages/admin/MonthlyReport';
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
           <Route path="/adminviewrequest" element={<AdminViewRequests/>}/>
           <Route path="/sent_to_recycle" element={<Torecycle/>}/>
           <Route path="/about" element={<About/>}/>
+          <Route path="/monthlyreport" element={<MonthlyReport/>}/>
+          <Route path="/adminviewrecycle" element={<AdminViewRecycle/>}/>
           </Routes>
         </BrowserRouter>
    </div>

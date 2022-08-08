@@ -49,17 +49,38 @@ userRouter.post('/register',function(req,res){
                             name:req.body.name,
                             email:req.body.email,
                             phone:req.body.phone,
-                            flatno:req.body.flatno
+                            flatno:req.body.flatno,
                         }
-                        var user_item = user(items)
-                        user_item.save()
-                        .then(()=>{
-                            res.status(200).json({
-                                success:true,
-                                error: false,
-                                message:'registration success'
-                            })
+                        user.findOne({ flatno: items.flatno })
+                        .then((userdata) => {
+                            if (!userdata) {
+                                var user_item = user(items)
+                                user_item.save()
+                                .then(()=>{
+                                    res.status(200).json({
+                                        success:true,
+                                        error: false,
+                                        message:'registration success'
+                                    })
+                                })
+                            }
+                            else {
+                                console.log(id)
+                                login.deleteOne({ _id: id })
+                                    .then(() => {
+
+                                        res.status(401).json({
+                                            success: false,
+                                            error: true,
+                                            message: 'Flat Number is already registered with us'
+                                        })
+
+
+                                    })
+
+                            }
                         })
+                        
                         
                     })
                 }
@@ -72,8 +93,8 @@ userRouter.post('/register',function(req,res){
                             login_id:id,
                             name:req.body.name,
                             email:req.body.email,
-                            phone:req.body.phone
-                          
+                            phone:req.body.phone,
+                            address:req.body.address,
                         }
                         var volunteer_item = volunteer(item)
                         volunteer_item.save()

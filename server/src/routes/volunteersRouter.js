@@ -32,7 +32,7 @@ volunteersRouter.get('/accept-request/:id',(req,res)=>{
 volunteersRouter.get('/sent-recycle/:id',(req,res)=>{
     const id = req.params.id
     console.log(id)
-    wastedata.updateOne({_id:id},{$set:{recycle:1}})
+    wastedata.updateOne({_id:id},{$set:{status:2}})
     .then(()=>{
             res.status(200).json({
             success:true,

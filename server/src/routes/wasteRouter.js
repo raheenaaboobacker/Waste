@@ -15,8 +15,10 @@ wasteRouter.post('/add',checkAuth,(req, res)=>{
         login_id:req.userData.userId,
         type:req.body.type,
         quantity:req.body.quantity,
+        date:req.body.date,
         status:'0',
-        recycle:"0"
+        payment:"1"
+        // recycle:"0"
     }
     console.log(item);
     
@@ -43,6 +45,53 @@ wasteRouter.post('/add',checkAuth,(req, res)=>{
     })
     
     
+})
+wasteRouter.post('/addwaste',checkAuth,(req, res)=>{
+    var item = {
+        login_id:req.userData.userId,
+        type:req.body.type,
+        quantity:req.body.quantity,
+        date:req.body.date,
+        status:'0',
+        payment:"0"
+        // recycle:"0"
+    }
+    console.log(item);
+    
+    var value = wastedata(item)
+    value.save()   
+    .then(()=>{
+        res.status(200).json({
+            success:true,
+            error:false,
+            message:'Waste added',
+            payment:'success',
+            user:req.userData.userId
+        })
+    })   
+})
+wasteRouter.post('/addpayment',(req,res)=>{
+    console.log(req.body);
+        var paymentData = {
+            login_id:req.body.login_id,
+            waste_id:req.body.waste_id,
+            amount:req.body.amount
+        }
+        console.log(paymentData);
+        var paymentValue = paymentdata(paymentData)
+        paymentValue.save()
+        .then(()=>{
+            wastedata.updateOne({_id:req.body.waste_id},{$set:{status:1,payment:1}})
+            .then(()=>{
+            res.status(200).json({
+            success:true,
+            error:false,
+            message:'Waste Accepted',
+        
+        })
+    })
+        })     
+
 })
 wasteRouter.get('/single-user-request',checkAuth,(req,res)=>{
  

@@ -6,7 +6,7 @@ const LoginSchema = new Schema({
      username: String,
      password: String,
      role: Number,
-    status:Number
+     status:Number
 })
 
 var Logindata = mongoose.model('login_tb',LoginSchema) //model creation

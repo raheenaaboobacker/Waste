@@ -5,6 +5,8 @@ import HomeComp1 from '../../Components/HomeComp1'
 import {Card,Row} from 'react-bootstrap'
 import Footer from '../../Components/Footer'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
+
 
 function Torecycle() {
     const [arrOfData,setArrOfData]=useState([])
@@ -39,7 +41,7 @@ function Torecycle() {
                  console.log(arrOfData);
                  const numAscending = [...arrOfData].sort((a, b) => b._id - a._id);
                  console.log(numAscending);
-                 const sortProperty="username"
+                
                  const sorted = [...arrOfData].sort((a, b) => b[arrOfData.sortProperty] - a[arrOfData.sortProperty]);
                  setData(sorted)
                  console.log(data);
@@ -66,7 +68,7 @@ function Torecycle() {
     <main className="hoc container clear" id='volrequest' style={{marginTop:-150}}> 
 <Row>
       
-    {arrOfData?.map(item=>   <>{item?.wasteData?.recycle==0?null:<Card  style={{width:"300px",height:"160px",display: 'flex',marginLeft:"40px",marginTop:50,
+    {arrOfData?.map(item=>   <>{item?.wasteData?.status==2?<Card  style={{width:"300px",height:"160px",display: 'flex',marginLeft:"40px",marginTop:50,
     boxShadow:"2px 5px 5px 5px"}} >
    <Card.Body>
    {/* minWidth: '18rem', flexGrow: 1, margin:'1rem', minHeight:'32rem' */}
@@ -74,11 +76,12 @@ function Torecycle() {
    
    <h6 >Waste type :{item?.wasteData?.type} </h6>
     <h6 class="card-title" >Quantity :{item?.wasteData?.quantity} </h6> 
+    <h6 class="card-title" >Requsted date :{moment(item?.wasteData?.date).format('YYYY-MM-DD')} </h6>
 
    
        
 </Card.Body>
-</Card>}
+</Card>:null}
 </>
                     
   
